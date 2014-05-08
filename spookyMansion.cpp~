@@ -1,0 +1,49 @@
+#include<cstdlib>
+#include<iostream>
+
+using namespace std;
+
+struct point{
+	int x, y;
+};
+
+struct room{
+	point tl, bl, br, tr;
+	point door;
+};
+
+struct roomListNode{
+	room key;
+	roomListNode* link;
+};
+
+class roomList{
+	private:
+		 roomListNode* head = NULL;
+	public:
+		 void add(room& target);
+		 void printList();
+};
+
+void divideRoom(room target, roomList list, float cont);
+
+int main (int argc, char** argv){
+
+	return EXIT_SUCCESS;
+}
+
+void roomList::add(room& target){
+	if(head == NULL) {
+		head = new roomListNode;
+		head->key = target;
+		head->link = NULL;
+	}
+	else{
+		roomListNode* cur = head;
+		while(cur->link != NULL) cur = cur->link;
+		cur->link = new roomListNode;
+		cur->link->key = target;
+		cur->link->link = NULL;
+	}
+}
+
